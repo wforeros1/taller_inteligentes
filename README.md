@@ -22,59 +22,109 @@ Una aplicación web desarrollada con Laravel para ayudar a los adultos mayores a
 
 Sigue estos pasos para ejecutar el proyecto en tu máquina local.
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone [https://github.com/TU_USUARIO/asistente-salud-laravel.git](https://github.com/TU_USUARIO/asistente-salud-laravel.git)
-    cd asistente-salud-laravel
-    ```
+### **Paso 0: Requisitos Previos - Instalar Laragon y Crear la Base de Datos**
 
-2.  **Instalar dependencias de PHP:**
-    ```bash
-    composer install
-    ```
+Antes de clonar el proyecto, necesitas un entorno de desarrollo local. Laragon es la opción más sencilla y completa.
 
-3.  **Configurar el entorno:**
-    Copia el archivo de ejemplo para las variables de entorno.
-    ```bash
-    cp .env.example .env
-    ```
+#### **A. Instalar Laragon**
 
-4.  **Generar la clave de la aplicación:**
-    ```bash
-    php artisan key:generate
-    ```
+1.  **Descarga Laragon:** Ve a la página oficial de descargas: [https://laragon.org/download/](https://laragon.org/download/)
+2.  **Elige la edición "Full":** Esta versión incluye todo lo que necesitas (Apache, MySQL, PHP, Node.js, etc.).
+3.  **Instala:** Ejecuta el instalador y sigue el asistente. Es un proceso simple de "siguiente, siguiente, siguiente".
+4.  **Inicia los servicios:** Una vez instalado, abre Laragon y haz clic en el botón **"Iniciar Todo"**. Esto activará los servidores Apache y MySQL, que se pondrán en color verde. 
 
-5.  **Configurar la base de datos:**
-    Abre el archivo `.env` y añade los datos de tu base de datos local (crea una base de datos nueva para el proyecto).
-    ```env
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=asistente_salud_db
-    DB_USERNAME=root
-    DB_PASSWORD=
-    ```
+#### **B. Crear la Base de Datos**
 
-6.  **Ejecutar las migraciones y los seeders:**
-    Esto creará las tablas y las llenará con datos de prueba.
-    ```bash
-    php artisan migrate:fresh --seed
-    ```
+Laragon incluye HeidiSQL, un gestor de bases de datos muy fácil de usar.
 
-7.  **Instalar dependencias de Node.js y compilar assets:**
-    ```bash
-    npm install
-    npm run dev
-    ```
+1.  En la ventana de Laragon, haz clic en el botón **"Base de datos"**.
+2.  Se abrirá HeidiSQL. En el panel de la izquierda, haz clic derecho sobre tu conexión (usualmente tiene el nombre de tu PC o `root@127.0.0.1`).
+3.  Selecciona `Crear nuevo` > `Base de datos`.
+4.  En el campo del nombre, escribe `asistente_salud_db` (o el nombre que vayas a usar en tu archivo `.env`) y haz clic en "Aceptar".
 
-8.  **Iniciar el servidor:**
-    Si usas Laragon, la URL (`http://asistente-salud-laravel.test`) ya debería funcionar. Si no, puedes usar:
-    ```bash
-    php artisan serve
-    ```
+¡Listo! La base de datos está creada y vacía, preparada para que Laravel la configure.
 
-9.  **Acceder a la aplicación:**
-    * Visita la URL de tu proyecto.
-    * Puedes iniciar sesión con el usuario de prueba:
-        * **Email:** `test@example.com`
-        * **Contraseña:** `password`
+---
+### **Paso 1: Clonar el Repositorio**
+
+```bash
+git clone [https://github.com/wforeros1/taller_inteligentes.git](https://github.com/wforeros1/taller_inteligentes.git)
+cd taller_inteligentes
+```
+
+### **Paso 2: Instalar Dependencias de PHP**
+
+```bash
+composer install
+```
+
+### **Paso 3: Configurar el Entorno**
+
+Copia el archivo de ejemplo para las variables de entorno.
+
+```bash
+cp .env.example .env
+```
+
+### **Paso 4: Generar la Clave de la Aplicación**
+
+```bash
+php artisan key:generate
+```
+
+### **Paso 5: Instalar Laravel Breeze (Autenticación)**
+
+Este paso es crucial para configurar el sistema de autenticación (login, registro).
+
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+```
+
+Cuando te pregunte el stack, elige **Blade**.
+
+### **Paso 6: Configurar la Base de Datos en el Proyecto**
+
+Abre el archivo `.env` y asegúrate de que los datos coincidan con tu base de datos creada en el Paso 0.
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=asistente_salud_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### **Paso 7: Ejecutar las Migraciones y los Seeders**
+
+Esto creará las tablas y las llenará con datos de prueba.
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+### **Paso 8: Instalar Dependencias de Node.js y Compilar Assets**
+
+```bash
+npm install
+npm run dev
+```
+
+### **Paso 9: Iniciar el Servidor**
+
+Laragon crea automáticamente una URL amigable para ti. Búscala haciendo clic derecho en el ícono de Laragon en la barra de tareas > `www` > `tu_proyecto`. Usualmente será `http://taller_inteligentes.test`.
+
+Si prefieres el método tradicional de Laravel:
+
+```bash
+php artisan serve
+```
+
+### **Paso 10: Acceder a la Aplicación**
+
+* Visita la URL de tu proyecto.
+* Puedes iniciar sesión con el usuario de prueba:
+    * **Email:** `lopez@example.com`
+    * **Contraseña:** `password123`
+* O crear uno nuevo.
